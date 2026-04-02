@@ -1,0 +1,37 @@
+{
+    "name": "java_enable_foreign_function_memory_api",
+    "build": {
+        "dockerfile": "Dockerfile",
+        "context": ".."
+    },
+    "features": {
+        "ghcr.io/devcontainers/features/docker-outside-of-docker:1": {
+            "version": "latest"
+        }
+    },
+    "remoteUser": "vscode",
+    "customizations": {
+        "vscode": {
+            "extensions": [
+                "vscjava.vscode-java-pack",
+                "redhat.java",
+                "ms-azuretools.vscode-containers",
+                "rust-lang.rust-analyzer",
+                "tamasfe.even-better-toml"
+            ],
+            "settings": {
+                "terminal.integrated.defaultProfile.linux": "bash",
+                "java.configuration.updateBuildConfiguration": "interactive",
+                "java.configuration.runtimes": [
+                    {
+                        "name": "JavaSE-25",
+                        "path": "/usr/local/openjdk-25",
+                        "default": true
+                    }
+                ],
+                "java.debug.settings.onBuildFailureProceed": true
+            }
+        }
+    },
+    "postCreateCommand": "java --version && mvn --version && jextract --version && rustc --version && clang --version"
+}
