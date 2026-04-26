@@ -26,7 +26,7 @@ RUN curl -fL -o /tmp/openjdk-25_linux-x64_bin.tar.gz \
     https://download.java.net/java/GA/jdk25.0.2/b1e0dfa218384cb9959bdcb897162d4e/10/GPL/openjdk-25.0.2_linux-x64_bin.tar.gz \
     && tar -xzf /tmp/openjdk-25_linux-x64_bin.tar.gz -C /usr/local/ \
     && rm /tmp/openjdk-25_linux-x64_bin.tar.gz \
-    && mv /usr/local/jdk-25 /usr/local/openjdk-25
+    && mv /usr/local/jdk-25.0.2 /usr/local/openjdk-25
 
 ENV JAVA_HOME=/usr/local/openjdk-25
 ENV PATH=${JAVA_HOME}/bin:${PATH}
