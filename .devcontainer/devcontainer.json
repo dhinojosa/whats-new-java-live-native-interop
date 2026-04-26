@@ -17,7 +17,8 @@
                 "redhat.java",
                 "ms-azuretools.vscode-containers",
                 "rust-lang.rust-analyzer",
-                "tamasfe.even-better-toml"
+                "tamasfe.even-better-toml",
+                "ms-vscode.cpptools-extension-pack"
             ],
             "settings": {
                 "terminal.integrated.defaultProfile.linux": "bash",

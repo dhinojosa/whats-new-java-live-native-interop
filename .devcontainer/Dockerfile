@@ -21,14 +21,14 @@ RUN apt-get update && apt-get install -y \
     && apt-get clean -y \
     && rm -rf /var/lib/apt/lists/*
 
-# Install OpenJDK 26
-RUN curl -fL -o /tmp/openjdk-26_linux-x64_bin.tar.gz \
-    https://download.java.net/java/GA/jdk26/c3cc523845074aa0af4f5e1e1ed4151d/35/GPL/openjdk-26_linux-x64_bin.tar.gz \
-    && tar -xzf /tmp/openjdk-26_linux-x64_bin.tar.gz -C /usr/local/ \
-    && rm /tmp/openjdk-26_linux-x64_bin.tar.gz \
-    && mv /usr/local/jdk-26 /usr/local/openjdk-26
+# Install OpenJDK 25
+RUN curl -fL -o /tmp/openjdk-25_linux-x64_bin.tar.gz \
+    https://download.java.net/java/GA/jdk25.0.2/b1e0dfa218384cb9959bdcb897162d4e/10/GPL/openjdk-25.0.2_linux-x64_bin.tar.gz \
+    && tar -xzf /tmp/openjdk-25_linux-x64_bin.tar.gz -C /usr/local/ \
+    && rm /tmp/openjdk-25_linux-x64_bin.tar.gz \
+    && mv /usr/local/jdk-25 /usr/local/openjdk-25
 
-ENV JAVA_HOME=/usr/local/openjdk-26
+ENV JAVA_HOME=/usr/local/openjdk-25
 ENV PATH=${JAVA_HOME}/bin:${PATH}
 
 # Install Maven
