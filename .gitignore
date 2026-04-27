@@ -24,9 +24,4 @@ buildNumber.properties
 *.so
 *.dll
 
-com/evolutionnext/foreignfunctionmemory/generated/**/*.java
-/src/main/java/com/evolutionnext/foreignfunctionmemory/generated/apply_callback$callback.java
-/src/main/java/com/evolutionnext/foreignfunctionmemory/generated/ffm_kata_h.java
-/src/main/java/com/evolutionnext/foreignfunctionmemory/generated/Point.java
-
-jextract-22/
+src/main/java/com/evolutionnext/foreignfunctionmemory/generated
