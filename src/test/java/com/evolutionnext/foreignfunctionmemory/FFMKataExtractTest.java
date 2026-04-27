@@ -8,18 +8,29 @@ import org.junit.jupiter.api.Test;
 import java.lang.foreign.Arena;
 import java.lang.foreign.MemorySegment;
 import java.nio.file.Path;
-import java.nio.file.Paths;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class FFMKataExtractTest {
 
-    //Or -Djava.library.path=<directory-path>/java_enable_foreign_function_memory_api/projects/ffm_kata
-    static {
-        String libraryPath = "projects/ffm_kata/libffm_kata.so";
-        Path normalizedPath = Paths.get(libraryPath).toAbsolutePath().normalize();
-        System.load(normalizedPath.toString()); // Explicitly load the native library
+    private static Path resolveFfmKataLibPath() {
+        String os = System.getProperty("os.name").toLowerCase();
+        String libName = switch (os) {
+            case String s when s.contains("mac") -> "libffm_kata.dylib";
+            case String s when s.contains("win") -> "ffm_kata.dll";
+            default -> "libffm_kata.so";
+        };
+
+        return Path.of("projects/ffm_kata", libName)
+                .toAbsolutePath()
+                .normalize();
     }
+
+    static {
+        System.out.println("Loading library from: " + resolveFfmKataLibPath());
+        System.load(resolveFfmKataLibPath().toString());
+    }
+
 
     @Test
     void testAddIntsExtracted() throws Throwable {
