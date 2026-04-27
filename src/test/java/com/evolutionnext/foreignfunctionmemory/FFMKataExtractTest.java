@@ -7,15 +7,18 @@ import org.junit.jupiter.api.Test;
 
 import java.lang.foreign.Arena;
 import java.lang.foreign.MemorySegment;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class FFMKataExtractTest {
 
-    //Or -Djava.library.path=/Users/danno/Development/mine/java_enable_foreign_function_memory_api/projects/ffm_kata
+    //Or -Djava.library.path=<directory-path>/java_enable_foreign_function_memory_api/projects/ffm_kata
     static {
-        String libraryPath = "projects/ffm_kata/libffm_kata.dylib"; // Absolute path to the library
-        System.load(libraryPath); // Explicitly load the native library
+        String libraryPath = "projects/ffm_kata/libffm_kata.so";
+        Path normalizedPath = Paths.get(libraryPath).toAbsolutePath().normalize();
+        System.load(normalizedPath.toString()); // Explicitly load the native library
     }
 
     @Test
@@ -44,7 +47,7 @@ public class FFMKataExtractTest {
 
     @Test
     void testGreetExtracted() throws Throwable {
-        try (Arena arena = Arena.ofConfined()) {
+        try (Arena _ = Arena.ofConfined()) {
             MemorySegment ptr = ffm_kata_h.greet.makeInvoker().apply();
             MemorySegment wrapped = ptr.reinterpret(100);
             String result = wrapped.getString(0);
